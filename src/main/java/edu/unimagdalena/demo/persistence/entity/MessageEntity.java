@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @NoArgsConstructor
-public class Message {
+public class MessageEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_message", nullable = false, unique = true)
@@ -37,5 +37,5 @@ public class Message {
     @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "id_user", insertable = false, updatable = false)
     @JsonIgnore
-    private User user;
+    private UserEntity userEntity;
 }

@@ -13,7 +13,7 @@ import java.sql.Timestamp;
 @Getter
 @Setter
 @NoArgsConstructor
-public class Suggestion {
+public class SuggestionEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_suggestion", nullable = false, unique = true)
@@ -32,5 +32,5 @@ public class Suggestion {
     @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "id_user", insertable = false, updatable = false)
     @JsonIgnore
-    private User user;
+    private UserEntity userEntity;
 }

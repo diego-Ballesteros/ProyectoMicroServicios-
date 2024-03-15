@@ -1,13 +1,10 @@
 package edu.unimagdalena.demo.persistence.entity;
 
 import jakarta.persistence.*;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.sql.Timestamp;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +15,7 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 
-public class User {
+public class UserEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_user", nullable = false, unique = true)
@@ -30,6 +27,9 @@ public class User {
     private String name;
 
     private String lastName;
+
+    @Column(unique = true)
+    private String email;
 
     private Integer age;
 
@@ -53,6 +53,6 @@ public class User {
     @JoinTable( name = "User_games",
                 joinColumns = @JoinColumn(name = "User_id"),
                 inverseJoinColumns = @JoinColumn (name = "game_id"))
-    private List<Game> games = new ArrayList<>();
+    private List<GameEntity> games ;
 
 }
