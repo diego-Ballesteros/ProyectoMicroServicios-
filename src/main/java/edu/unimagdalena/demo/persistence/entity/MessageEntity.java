@@ -16,7 +16,7 @@ import java.time.LocalDateTime;
 public class MessageEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_message", nullable = false, unique = true)
+    @Column(name = "id_message", unique = true)
     private Long id;
 
     private String creator;
@@ -37,5 +37,5 @@ public class MessageEntity {
     @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "id_user", insertable = false, updatable = false)
     @JsonIgnore
-    private UserEntity userEntity;
+    private UserEntity user;
 }

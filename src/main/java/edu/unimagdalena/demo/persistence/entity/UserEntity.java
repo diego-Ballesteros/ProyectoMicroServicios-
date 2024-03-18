@@ -1,9 +1,7 @@
 package edu.unimagdalena.demo.persistence.entity;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -14,14 +12,15 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
-
+@AllArgsConstructor
+@Builder
 public class UserEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_user", nullable = false, unique = true)
+    @Column(name = "id_user")
     private Long id;
 
-    @Column(length = 100)
+    @Column(length = 100, nullable = false)
     private String userName;
 
     private String name;
@@ -46,7 +45,7 @@ public class UserEntity {
 
     private String rol;
 
-    @Column(columnDefinition = "DATETIME", nullable = false)
+    @Column(columnDefinition = "DATETIME")
     private LocalDateTime create_at;
 
     @ManyToMany
@@ -55,4 +54,8 @@ public class UserEntity {
                 inverseJoinColumns = @JoinColumn (name = "game_id"))
     private List<GameEntity> games ;
 
+    @OneToMany(mappedBy = "user")
+    private List<MessageEntity> messages;
+
 }
+

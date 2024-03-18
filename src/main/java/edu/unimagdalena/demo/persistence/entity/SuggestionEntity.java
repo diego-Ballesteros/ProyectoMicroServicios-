@@ -16,7 +16,7 @@ import java.sql.Timestamp;
 public class SuggestionEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_suggestion", nullable = false, unique = true)
+    @Column(name = "id_suggestion", unique = true)
     private Long id;
 
     private String description;
