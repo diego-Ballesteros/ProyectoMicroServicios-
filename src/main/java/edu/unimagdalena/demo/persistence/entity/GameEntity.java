@@ -1,9 +1,7 @@
 package edu.unimagdalena.demo.persistence.entity;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -14,6 +12,8 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class GameEntity {
 
     @Id
@@ -21,22 +21,24 @@ public class GameEntity {
     @Column(name = "id_game", unique = true)
     private Long id;
 
-    @Column(length = 100)
+    @Column(length = 100, nullable = false)
     private String Creator;
 
+    @Column(length = 150, nullable = false)
     private String sport;
 
+    @Column(length = 150)
     private String city;
 
     private String province;
 
-    @Column(columnDefinition = "DATETIME", nullable = false)
+    @Column(columnDefinition = "DATETIME")
     private LocalDateTime date;
 
-    @Column(columnDefinition = "DATETIME", nullable = false)
+    @Column(columnDefinition = "DATETIME")
     private LocalDateTime startHour;
 
-    @Column(columnDefinition = "DATETIME", nullable = false)
+    @Column(columnDefinition = "DATETIME")
     private LocalDateTime endHour;
 
     private Integer beginner;

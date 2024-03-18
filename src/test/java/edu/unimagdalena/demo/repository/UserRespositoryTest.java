@@ -8,6 +8,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -21,12 +22,24 @@ public class UserRespositoryTest extends AbstractIntegrationDBTest {
         this.userRepository = userRepository;
     }
 
-    private void initMockUsers(){
+    private UserEntity initMock1User(String name, String lastName, String username, String password) {
+        return UserEntity.builder()
+                .name(name)
+                .lastName(lastName)
+                .userName(username)
+                .password(password)
+                .build();
+    }
+
+    private void initMock2Users(){
         UserEntity user = UserEntity.builder()
                 .name("Diego")
                 .lastName("Ballesteros")
                 .userName("db")
                 .password("123")
+                .photo("https://www.google.com/imageExample")
+                .rol("user")
+                .create_at(LocalDateTime.now())
                 .build();
         this.userRepository.save(user);
 
@@ -35,6 +48,9 @@ public class UserRespositoryTest extends AbstractIntegrationDBTest {
                 .lastName("Cediel")
                 .userName("ac")
                 .password("123")
+                .photo("https://www.google.com/imageExample")
+                .rol("user")
+                .create_at(LocalDateTime.now())
                 .build();
         this.userRepository.save(user2);
         this.userRepository.flush();
@@ -48,12 +64,8 @@ public class UserRespositoryTest extends AbstractIntegrationDBTest {
     @Test
     void givenAnUser_whenSave_thenUserwithId(){
         //given
-        UserEntity user = UserEntity.builder()
-                .name("Diego")
-                .lastName("Ballesteros")
-                .userName("db")
-                .password("123")
-                .build();
+        UserEntity user = initMock1User("Diego", "Ballesteros", "db", "123");
+
         //when
         UserEntity userSaved = this.userRepository.save(user);
         //then
@@ -64,7 +76,7 @@ public class UserRespositoryTest extends AbstractIntegrationDBTest {
     @DisplayName("dado un conjunto de usuarios al buscarlo todos obtenemos la lista de los usuarios en la base de datos")
     void shouldGetAllUsers(){
         //Given
-        initMockUsers();
+        initMock2Users();
         //when
         List<UserEntity> users = this.userRepository.findAll();
         //then
@@ -74,7 +86,7 @@ public class UserRespositoryTest extends AbstractIntegrationDBTest {
     @Test
     void givenUsers_whenFindByNameAnsLastName_thenGetUserList(){
         //give
-        initMockUsers();
+        initMock2Users();
         // when
         List<UserEntity> usersFound = this.userRepository.findAllByNameAndLastName("Diego", "Ballesteros");
         //then

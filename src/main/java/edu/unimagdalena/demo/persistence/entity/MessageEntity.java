@@ -2,9 +2,7 @@ package edu.unimagdalena.demo.persistence.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.time.LocalDateTime;
 
@@ -13,14 +11,17 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class MessageEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_message", unique = true)
     private Long id;
 
+    @Column(nullable = false)
     private String creator;
-
+    @Column(nullable = false)
     private String addressee;
 
     @Column(columnDefinition = "DATETIME", nullable = false)
