@@ -24,7 +24,7 @@ public class MessageEntity {
     @Column(nullable = false)
     private String addressee;
 
-    @Column(columnDefinition = "DATETIME", nullable = false)
+    @Column(nullable = false)
     private LocalDateTime create_at;
 
     private String content;

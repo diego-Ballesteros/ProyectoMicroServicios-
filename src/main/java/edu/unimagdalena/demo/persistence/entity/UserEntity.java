@@ -38,14 +38,13 @@ public class UserEntity {
     @Column(nullable = false, length = 100)
     private String repPassword;
 
-    @Column( nullable = false, columnDefinition = "TINYINT")
+    @Column( nullable = false)
     private Boolean enable;
 
     private String photo;
 
     private String rol;
 
-    @Column(columnDefinition = "DATETIME")
     private LocalDateTime create_at;
 
     @ManyToMany

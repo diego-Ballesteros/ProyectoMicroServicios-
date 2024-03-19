@@ -32,13 +32,10 @@ public class GameEntity {
 
     private String province;
 
-    @Column(columnDefinition = "DATETIME")
     private LocalDateTime date;
 
-    @Column(columnDefinition = "DATETIME")
     private LocalDateTime startHour;
 
-    @Column(columnDefinition = "DATETIME")
     private LocalDateTime endHour;
 
     private Integer beginner;
